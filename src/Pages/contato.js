@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core/';
+import { toast } from 'react-toastify';
 
 const Contatos = () => {
 
@@ -42,12 +43,21 @@ const Contatos = () => {
                 setTimeout(() => {
                     setSuccess(false);
                 }, 5000)
+
+                toast('🦄 Comentário adicionado com sucesso!!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
             }
         })
         
         setAuthor('');
         setContent('');
-        
         console.log(content)
     }  
 
