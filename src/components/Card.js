@@ -1,6 +1,7 @@
 import React from 'react';
 import { Paper, Grid, Typography, Button, makeStyles} from '@material-ui/core/';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import cartActions from './store/actions/cart';
 
 const useStyles = makeStyles((theme) => ({
@@ -14,6 +15,19 @@ const Card = ({ product, children }) => {
     const cart = useSelector( state => state.cart.value )
     const dispatch = useDispatch();
     const classes = useStyles();
+
+    const addProductToCart = () => {
+        dispatch(cartActions.Add(cart, product));
+        toast('Comentário adicionado com sucesso!!', {
+            position: "bottom-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+    }
 
     return(
         <Grid item xs={3}>
@@ -31,7 +45,7 @@ const Card = ({ product, children }) => {
                 
                 <Button 
                     variant="contained"
-                    onClick={()=>dispatch(cartActions.Add(cart, product))}
+                    onClick={addProductToCart}
                 >
                     Adicionar
                 </Button>
